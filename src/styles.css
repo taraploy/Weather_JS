@@ -1,0 +1,50 @@
+div.container {
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding: 100px 50px;
+}
+div.search-area {
+  display: flex;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  justify-content: center;
+}
+
+.search-btn {
+  margin-right: 5px;
+}
+
+.weather-info {
+  text-align: center;
+  margin-top: 30px;
+}
+
+div.current-weather {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.current-temp {
+  align-items: center;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+.current-degree {
+  vertical-align: top;
+  font-size: 20px;
+}
+.symbol-size {
+  font-size: 24px;
+}
+
+.left-temp {
+  font-weight: 500;
+}
+
+.card {
+  border: none;
+  width: 20rem;
+}
