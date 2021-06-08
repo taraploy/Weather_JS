@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script
       src="https://kit.fontawesome.com/00b9a868d2.js"
       crossorigin="anonymous"
@@ -22,30 +24,47 @@
     <div class="container">
       <div class="border shadow">
         <div class="mt-5 input-group search-area mx-auto">
-          <input type="text" placeholder="Enter location" />
-          <button type="submit" class="btn btn-primary search-btn">
-            <i class="fas fa-search"></i>
-          </button>
-          <button type="submit" class="btn btn-primary">
+          <form id="search-form">
+            <input
+              type="search"
+              placeholder="Enter a location"
+              autocomplete="off"
+              autofocus="on"
+              id="search-input"
+            />
+            <button type="submit" class="btn btn-primary search-btn">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+          <button
+            type="submit"
+            class="btn btn-primary current-btn"
+            id="current-btn"
+          >
             <i class="fas fa-location-arrow"></i>
           </button>
         </div>
         <div class="weather-info">
-          <h3>Sunday | 3:00 PM</h3>
-          <h4>Salt Lake City, UT USA</h4>
-          <h4>Mostly cloudy</h4>
+          <h4 id="todayDate"></h4>
+          <h4 id="location"></h4>
+          <h4 id="description"></h4>
         </div>
         <div class="current-weather">
           <div class="row d-flex justify-content-center">
             <div class="col-md-8 text-center">
-              <span class="current-temp">⛅ 66</span>
-              <span class="current-degree">&nbsp;&deg;F | &deg;C</span>
+              <span class="current-temp" id="currentEmoji">⛅</span>
+              <span class="current-temp" id="currentTemp"></span>
+              <span class="current-degree"
+                ><span class="text-muted" id="f-temp" style="font-weight: bold"
+                  >&nbsp;&deg;F</span
+                >
+                | <span class="text-muted" id="c-temp">&deg;C</span></span
+              >
             </div>
             <div class="col-md-4">
               <p>
-                Precipitation: 48% <br />
-                Humidity: 41% <br />
-                Wind: 14 mph
+                Humidity: <span id="humidity"></span>% <br />
+                Wind: <span id="wind"></span> mph
               </p>
             </div>
           </div>
@@ -116,6 +135,6 @@
         </div>
       </div>
     </div>
-    <script src="src/index.js"></script>
+    <script src="src/app.js"></script>
   </body>
 </html>

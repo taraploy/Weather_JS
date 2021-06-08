@@ -12,13 +12,24 @@ div.search-area {
   justify-content: center;
 }
 
-.search-btn {
+#search-input {
+  vertical-align: middle;
+  height: 40px;
+}
+
+.search-btn,
+.current-btn {
+  height: 40px;
   margin-right: 5px;
 }
 
 .weather-info {
   text-align: center;
   margin-top: 30px;
+}
+
+#description {
+  text-transform: capitalize;
 }
 
 div.current-weather {
@@ -30,6 +41,18 @@ div.current-weather {
   align-items: center;
   font-size: 50px;
   font-weight: 500;
+}
+
+#c-temp,
+#f-temp {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#c-temp:hover,
+#f-temp:hover {
+  color: #000;
+  font-weight: bold;
 }
 
 .current-degree {
