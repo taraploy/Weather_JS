@@ -1,7 +1,5 @@
 ﻿# Weather_JS
  
-In progress
-
 ###### Axios
 https://github.com/axios/axios
 
