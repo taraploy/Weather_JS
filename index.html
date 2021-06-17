@@ -22,115 +22,125 @@
   </head>
   <body>
     <div class="container">
-      <div class="border shadow">
-        <div class="mt-5 input-group search-area mx-auto">
-          <form id="search-form">
-            <input
-              type="search"
-              placeholder="Enter a location"
-              autocomplete="off"
-              autofocus="on"
-              id="search-input"
-            />
-            <button type="submit" class="btn btn-primary search-btn">
-              <i class="fas fa-search"></i>
+      <div class="weather-app mx-auto">
+        <div class="border shadow">
+          <div class="mt-5 input-group search-area mx-auto">
+            <form id="search-form">
+              <input
+                type="search"
+                placeholder="Enter a city..."
+                autocomplete="off"
+                autofocus="on"
+                id="search-input"
+              />
+              <button type="submit" class="btn search-btn">
+                <i class="fas fa-search text-white"></i>
+              </button>
+            </form>
+            <button type="submit" class="btn current-btn" id="current-btn">
+              <i class="fas fa-location-arrow text-white"></i>
             </button>
-          </form>
-          <button
-            type="submit"
-            class="btn btn-primary current-btn"
-            id="current-btn"
-          >
-            <i class="fas fa-location-arrow"></i>
-          </button>
-        </div>
-        <div class="weather-info">
-          <h4 id="todayDate"></h4>
-          <h4 id="location"></h4>
-          <h4 id="description"></h4>
-        </div>
-        <div class="current-weather">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8 text-center">
-              <span class="current-temp" id="currentEmoji">⛅</span>
-              <span class="current-temp" id="currentTemp"></span>
-              <span class="current-degree"
-                ><span class="text-muted" id="f-temp" style="font-weight: bold"
-                  >&nbsp;&deg;F</span
+          </div>
+          <div class="weather-info">
+            <h4 id="todayDate"></h4>
+            <h4 id="location"></h4>
+            <h4 id="description"></h4>
+          </div>
+          <div class="current-weather">
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-8 text-center current-temp-info">
+                <span class="current-temp">
+                  <img src="" id="currentIcon" />
+                </span>
+                <span class="current-temp" id="currentTemp"></span>
+                <span class="current-degree"
+                  ><span
+                    class="text-muted"
+                    id="f-temp"
+                    style="font-weight: bold"
+                    >&nbsp;&deg;F</span
+                  >
+                  | <span class="text-muted" id="c-temp">&deg;C</span></span
                 >
-                | <span class="text-muted" id="c-temp">&deg;C</span></span
-              >
-            </div>
-            <div class="col-md-4">
-              <p>
-                Humidity: <span id="humidity"></span>% <br />
-                Wind: <span id="wind"></span> mph
-              </p>
+              </div>
+              <div class="col-md-4">
+                <p>
+                  Humidity: <span id="humidity"></span>% <br />
+                  Wind: <span id="wind"></span> mph
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="future-weather">
-          <div class="card-group">
-            <!-- 1 -->
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Mon</h5>
-                <p class="card-text">
-                  <span class="symbol-size"> ⛅ </span>
-                  <br />
-                  <span class="text-dark left-temp"> 74&deg; </span>
-                  <span class="text-muted"> 55&deg; </span>
-                </p>
+          <div class="future-weather">
+            <div class="card-group">
+              <!-- 1 -->
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Mon</h5>
+                  <p class="card-text">
+                    <span class="symbol-size"> ⛅ </span>
+                    <br />
+                    <span class="text-dark left-temp"> 74&deg; </span>
+                    <span class="text-muted"> 55&deg; </span>
+                  </p>
+                </div>
+              </div>
+              <!-- 2 -->
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Tue</h5>
+                  <p class="card-text">
+                    <span class="symbol-size"> ⛅ </span>
+                    <br />
+                    <span class="text-dark left-temp"> 81&deg; </span>
+                    <span class="text-muted"> 58&deg; </span>
+                  </p>
+                </div>
+              </div>
+              <!-- 3 -->
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Wed</h5>
+                  <p class="card-text">
+                    <span class="symbol-size"> ⛅ </span>
+                    <br />
+                    <span class="text-dark left-temp"> 81&deg; </span>
+                    <span class="text-muted"> 52&deg; </span>
+                  </p>
+                </div>
+              </div>
+              <!-- 4 -->
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Thu</h5>
+                  <p class="card-text">
+                    <span class="symbol-size"> ⛅ </span>
+                    <br />
+                    <span class="text-dark left-temp"> 75&deg; </span>
+                    <span class="text-muted"> 47&deg; </span>
+                  </p>
+                </div>
+              </div>
+              <!-- 5 -->
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Fri</h5>
+                  <p class="card-text">
+                    <span class="symbol-size"> 🌧 </span>
+                    <br />
+                    <span class="text-dark left-temp"> 52&deg; </span>
+                    <span class="text-muted"> 42&deg; </span>
+                  </p>
+                </div>
               </div>
             </div>
-            <!-- 2 -->
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Tue</h5>
-                <p class="card-text">
-                  <span class="symbol-size"> ⛅ </span>
-                  <br />
-                  <span class="text-dark left-temp"> 81&deg; </span>
-                  <span class="text-muted"> 58&deg; </span>
-                </p>
-              </div>
-            </div>
-            <!-- 3 -->
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Wed</h5>
-                <p class="card-text">
-                  <span class="symbol-size"> ⛅ </span>
-                  <br />
-                  <span class="text-dark left-temp"> 81&deg; </span>
-                  <span class="text-muted"> 52&deg; </span>
-                </p>
-              </div>
-            </div>
-            <!-- 4 -->
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Thu</h5>
-                <p class="card-text">
-                  <span class="symbol-size"> ⛅ </span>
-                  <br />
-                  <span class="text-dark left-temp"> 75&deg; </span>
-                  <span class="text-muted"> 47&deg; </span>
-                </p>
-              </div>
-            </div>
-            <!-- 5 -->
-            <div class="card text-center">
-              <div class="card-body">
-                <h5 class="card-title">Fri</h5>
-                <p class="card-text">
-                  <span class="symbol-size"> 🌧 </span>
-                  <br />
-                  <span class="text-dark left-temp"> 52&deg; </span>
-                  <span class="text-muted"> 42&deg; </span>
-                </p>
-              </div>
-            </div>
+          </div>
+          <div class="citation">
+            <hr />
+            <small
+              ><a href="#" class="myGithub">Open-source code</a> by Tara P
+              Bush</small
+            >
           </div>
         </div>
       </div>

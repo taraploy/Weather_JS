@@ -2,18 +2,18 @@
 // API
 let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
 
-// Unit
-// let unit = "imperial";
-
 function displayWeather(response) {
   let location = document.querySelector("#location");
   let temperature = document.querySelector("#currentTemp");
   let description = document.querySelector("#description");
+  let icon = document.querySelector("#currentIcon");
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   location.innerHTML = response.data.name;
   temperature.innerHTML = Math.round(response.data.main.temp);
   description.innerHTML = response.data.weather[0].description;
+  icon.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  icon.setAttribute("alt", response.data.weather[0].description);
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
   // console.log(response.data);
