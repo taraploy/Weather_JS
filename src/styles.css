@@ -5,6 +5,10 @@ body {
   background-color: #f7d6bf;
 }
 
+a {
+  text-decoration: none;
+}
+
 .weather-app {
   background-color: #fff;
   max-width: 800px;
