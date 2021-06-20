@@ -23,8 +23,26 @@ function get_AM_PM(hour) {
 // Display Date
 todayDate.innerHTML = `${day} ${hour}:${minute} ${AM_PM}`;
 
+function formatForecastDay(dateStamp) {
+  let date = new Date(dateStamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 // API
 let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
+
+function forecast(coordinates) {
+  console.log(coordinates);
+  // let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
+  let unit = "imperial";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`
+  console.log(apiUrl);
+  // Get api then display forecast
+  axios.get(apiUrl).then(displayWeatherForecast);
+}
 
 function displayWeather(response) {
   let location = document.querySelector("#location");
@@ -41,39 +59,51 @@ function displayWeather(response) {
   icon.setAttribute("alt", response.data.weather[0].description);
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
-  // console.log(response.data);
+  console.log(response.data);
+
+  forecast(response.data.coord);
+
 }
 
-
-let getFahrenheit = (event) => {
-  event.preventDefault();
-  let celcius = document.querySelector("#currentTemp");
-
-  f_temp.classList.add("fw-bold");
-  c_temp.classList.remove("fw-bold");
-
-  celcius.innerHTML = `${Math.round(temperature)}`;
-}
-
-// Conversion
-let getCelcius = (event) => {
-  event.preventDefault();
-  let fahrenheit = document.querySelector("#currentTemp");
-
-  f_temp.classList.remove("fw-bold");
-  c_temp.classList.add("fw-bold");
-
-  let temp = Math.floor((temperature - 32) * (5 / 9));
-
-  fahrenheit.innerHTML = `${temp}`;
+function displayWeatherForecast(response) {
+  console.log(response.data.daily);
+  let forecast_day = response.data.daily;
+  let weather_forecast = document.querySelector("#weather-forecast");
+  let forecast_card = `<div class="card-group">`
+  forecast_day.forEach(function (forecast, index) {        
+    if (index > 0 && index < 6) {
+      forecast_card += `
+        <div class="card-group">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title forecast-day">${formatForecastDay(forecast.dt)}</h5>
+              <p class="card-text">
+                <span>
+                  <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" />
+                </span>            
+                <br />
+                <span class="text-dark maxTemp" id="max-temp">
+                  ${Math.round(forecast.temp.max)}&deg;                 
+                </span>
+                <span class="text-muted minTemp" id="min-temp">
+                  ${Math.round(forecast.temp.min)}&deg;
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  })
+               
+  forecast_card += `</div>`;
+  weather_forecast.innerHTML = forecast_card;  
 }
 
 // Search current location
 function searchCurrentLocation(location) {
   let unit = "imperial";
   let currentLocationApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${apiKey}&units=${unit}`;
-  f_temp.classList.add("fw-bold");
-  c_temp.classList.remove("fw-bold");
   axios.get(currentLocationApiUrl).then(displayWeather);
 }
 
@@ -100,13 +130,6 @@ searchForm.addEventListener("submit", (event) => {
 
 let currentLocationBtn = document.querySelector("#current-btn");
 currentLocationBtn.addEventListener("click", getCurrentLocation);
-
-let temperature = null;
-
-let f_temp = document.querySelector("#f-temp");
-f_temp.addEventListener("click", getFahrenheit)
-let c_temp = document.querySelector("#c-temp");
-c_temp.addEventListener("click", getCelcius)
 
 // Default search
 searchLocation("Salt Lake City");
