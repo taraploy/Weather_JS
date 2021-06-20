@@ -79,7 +79,6 @@ div.current-weather {
 
 #c-temp:hover,
 #f-temp:hover {
-  color: #000;
   font-weight: bold;
 }
 

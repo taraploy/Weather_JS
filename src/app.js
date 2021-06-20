@@ -10,25 +10,12 @@ let hour = get_12_hours(h);
 let minute = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
 let AM_PM = get_AM_PM(h);
 
-let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
+// Convert 24-hour military time to 12-hour am-pm time
 function get_12_hours(hour) {
   return (hour % 12) || 12;
 }
 
+// Display AM PM
 function get_AM_PM(hour) {
   return hour > 11 && hour < 24 ? `PM` : `AM`;
 }
