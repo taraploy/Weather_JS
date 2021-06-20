@@ -35,7 +35,7 @@ function formatForecastDay(dateStamp) {
 let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
 
 function forecast(coordinates) {
-  console.log(coordinates);
+  // console.log(coordinates);
   // let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
   let unit = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`
@@ -59,14 +59,14 @@ function displayWeather(response) {
   icon.setAttribute("alt", response.data.weather[0].description);
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
-  console.log(response.data);
+  // console.log(response.data);
 
   forecast(response.data.coord);
 
 }
 
 function displayWeatherForecast(response) {
-  console.log(response.data.daily);
+  // console.log(response.data.daily);
   let forecast_day = response.data.daily;
   let weather_forecast = document.querySelector("#weather-forecast");
   let forecast_card = `<div class="card-group">`
