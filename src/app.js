@@ -25,7 +25,7 @@ function forecast(coordinates) {
   // console.log(coordinates);
   let unit = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`
-  console.log(apiUrl);
+  // console.log(apiUrl);
   // Get api then display forecast
   axios.get(apiUrl).then(displayWeatherForecast);
 }
