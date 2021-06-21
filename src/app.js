@@ -1,28 +1,15 @@
 // DATE
-
-let todayDate = document.querySelector("#todayDate");
-let now = new Date();
-
-let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-let day = days[now.getDay()];
-let h = now.getHours();
-let hour = get_12_hours(h);
-let minute = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
-let AM_PM = get_AM_PM(h);
-
-// Convert 24-hour military time to 12-hour am-pm time
-function get_12_hours(hour) {
-  return (hour % 12) || 12;
+function displayDateTime() {
+  let now = new Date();
+  let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let day = days[now.getDay()];
+  let hour = (now.getHours() % 12) || 12;
+  let minute = (now.getMinutes() < 10 ? '0' : '') + now.getMinutes();
+  let AM_PM = now.getHours() > 11 && now.getHours() < 24 ? `PM` : `AM`; 
+  document.querySelector("#todayDate").innerHTML = `${day} ${hour}:${minute} ${AM_PM}`;
 }
 
-// Display AM PM
-function get_AM_PM(hour) {
-  return hour > 11 && hour < 24 ? `PM` : `AM`;
-}
-
-// Display Date
-todayDate.innerHTML = `${day} ${hour}:${minute} ${AM_PM}`;
-
+// Display forecast days
 function formatForecastDay(dateStamp) {
   let date = new Date(dateStamp * 1000);
   let day = date.getDay();
@@ -36,7 +23,6 @@ let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
 
 function forecast(coordinates) {
   // console.log(coordinates);
-  // let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
   let unit = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`
   console.log(apiUrl);
@@ -45,20 +31,18 @@ function forecast(coordinates) {
 }
 
 function displayWeather(response) {
-  let location = document.querySelector("#location");
-  let current_temp = document.querySelector("#currentTemp");
-  let description = document.querySelector("#description");
+  displayDateTime();
   let icon = document.querySelector("#currentIcon");
-  let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("#wind");
-  location.innerHTML = response.data.name;
+
   temperature = response.data.main.temp
-  current_temp.innerHTML = Math.round(temperature);
-  description.innerHTML = response.data.weather[0].description;
+  document.querySelector("#location").innerHTML = response.data.name;
+  document.querySelector("#country").innerHTML = response.data.sys.country;
+  document.querySelector("#currentTemp").innerHTML = Math.round(temperature);
+  document.querySelector("#description").innerHTML = response.data.weather[0].description;
   icon.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
-  humidity.innerHTML = response.data.main.humidity;
-  wind.innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   // console.log(response.data);
 
   forecast(response.data.coord);
