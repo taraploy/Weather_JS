@@ -20,10 +20,10 @@ function formatForecastDay(dateStamp) {
 
 // API
 let apiKey = "91a36f02a0aeea3d3c4881c6580e425f";
+let unit = "imperial";
 
 function forecast(coordinates) {
   // console.log(coordinates);
-  let unit = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=${unit}`
   // console.log(apiUrl);
   // Get api then display forecast
@@ -33,7 +33,7 @@ function forecast(coordinates) {
 function displayWeather(response) {
   displayDateTime();
   let icon = document.querySelector("#currentIcon");
-
+  searchInput = response.data.name;
   temperature = response.data.main.temp
   document.querySelector("#location").innerHTML = response.data.name;
   document.querySelector("#country").innerHTML = response.data.sys.country;
@@ -41,6 +41,7 @@ function displayWeather(response) {
   document.querySelector("#description").innerHTML = response.data.weather[0].description;
   icon.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description);
+  document.querySelector("#feels_like").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   // console.log(response.data);
@@ -86,7 +87,6 @@ function displayWeatherForecast(response) {
 
 // Search current location
 function searchCurrentLocation(location) {
-  let unit = "imperial";
   let currentLocationApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.coords.latitude}&lon=${location.coords.longitude}&appid=${apiKey}&units=${unit}`;
   axios.get(currentLocationApiUrl).then(displayWeather);
 }
@@ -98,9 +98,29 @@ function getCurrentLocation(event) {
 }
 
 function searchLocation(location) {
-  let unit = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayWeather);
+}
+
+let getFahrenheit = (event) => {
+  event.preventDefault();
+  
+  f_temp.classList.add("fw-bold");
+  c_temp.classList.remove("fw-bold");
+  document.querySelector("#wind-unit").innerHTML = `mph`
+  unit = "imperial";
+  searchLocation(searchInput);
+}
+
+let getCelcius = (event) => {
+  event.preventDefault();
+
+  f_temp.classList.remove("fw-bold");
+  c_temp.classList.add("fw-bold");
+  document.querySelector("#wind-unit").innerHTML = `km/h`
+
+  unit = "metric";
+  searchLocation(searchInput);
 }
 
 // Search location box
@@ -108,12 +128,17 @@ let searchForm = document.querySelector("#search-form");
 // Handle the form submit
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  let searchInput = document.querySelector("#search-input").value;
-  searchLocation(searchInput);
+  let searchInput = document.querySelector("#search-input");
+  searchLocation(searchInput.value);
 });
 
 let currentLocationBtn = document.querySelector("#current-btn");
 currentLocationBtn.addEventListener("click", getCurrentLocation);
+
+let f_temp = document.querySelector("#f-temp");
+f_temp.addEventListener("click", getFahrenheit)
+let c_temp = document.querySelector("#c-temp");
+c_temp.addEventListener("click", getCelcius);
 
 // Default search
 searchLocation("Salt Lake City");

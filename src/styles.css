@@ -7,7 +7,7 @@ body {
 
 .weather-app {
   background-color: #fff;
-  max-width: 800px;
+  max-width: 850px;
 }
 
 div.container {
@@ -38,7 +38,7 @@ div.search-area {
   background-color: #f8a488;
   height: 40px;
   margin-right: 5px;
-  transition: all 0.5 ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .search-btn:hover,
@@ -71,6 +71,15 @@ div.current-weather {
   vertical-align: top;
   font-size: 18px;
 }
+
+#c-temp:hover,
+#f-temp:hover {
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  color: #000;
+  font-weight: bold;
+}
+
 .symbol-size {
   font-size: 24px;
 }
@@ -91,7 +100,7 @@ div.current-weather {
 .myGithub {
   color: #fabea7;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .myGithub:hover {

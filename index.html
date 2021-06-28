@@ -58,12 +58,18 @@
                   <img src="" id="currentIcon" />
                 </span>
                 <span class="current-temp" id="currentTemp"></span>
-                <span class="current-degree fw-bold">&nbsp;&deg;F</span>
+                <span class="current-degree"
+                  ><span class="text-muted fw-bold" id="f-temp"
+                    >&nbsp;&deg;F</span
+                  >
+                  | <span class="text-muted" id="c-temp">&deg;C</span></span
+                >
               </div>
               <div class="col-md-4">
                 <h5>
-                  Humidity: <span id="humidity"></span>% <br />
-                  Wind: <span id="wind"></span> mph
+                  Feels like: <span id="feels_like"></span>&deg;<br />
+                  Humidity: <span id="humidity"></span>%<br />
+                  Wind: <span id="wind"></span> <span id="wind-unit">mph</span>
                 </h5>
               </div>
             </div>
